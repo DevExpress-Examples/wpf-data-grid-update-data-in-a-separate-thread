@@ -1,0 +1,9 @@
+﻿<Window x:Class="DXGridThreads.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        Title="MainWindow" Height="350" Width="525">
+    <dxg:GridControl Name="grid" ItemsSource="{Binding Source}" AutoPopulateColumns="True">
+    </dxg:GridControl>
+</Window>
