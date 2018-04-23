@@ -1,0 +1,17 @@
+﻿<Window x:Class="DXGridThreads.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:mvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:local="clr-namespace:DXGridThreads"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:ViewModel/>
+    </Window.DataContext>
+    <dxg:GridControl Name="grid" ItemsSource="{Binding Source}" AutoGenerateColumns="AddNew">
+        <mvvm:Interaction.Behaviors>
+            <local:CustomService GridControl="{Binding ElementName=grid}"/>
+        </mvvm:Interaction.Behaviors>
+    </dxg:GridControl>
+</Window>
