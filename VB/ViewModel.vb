@@ -42,7 +42,10 @@ Namespace DXGridThreads
                 If Me._Source Is Nothing Then
                     Me._Source = New ObservableCollection(Of DataItem)()
                     For i As Integer = 0 To 99
-                        Me._Source.Add(New DataItem() With {.Name = "Name" & i.ToString(), .Value = i})
+                        Me._Source.Add(New DataItem() With { _
+                            .Name = "Name" & i.ToString(), _
+                            .Value = i _
+                        })
                     Next i
                 End If
                 Return Me._Source
