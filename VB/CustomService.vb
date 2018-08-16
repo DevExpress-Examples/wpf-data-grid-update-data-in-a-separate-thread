@@ -1,4 +1,6 @@
 ﻿Imports DevExpress.Xpf.Grid
+Imports System
+Imports System.Windows
 Imports DevExpress.Xpf.Mvvm.UI
 
 Namespace DXGridThreads
@@ -22,30 +24,26 @@ Namespace DXGridThreads
                 SetValue(GridControlProperty, value)
             End Set
         End Property
-
-        Protected ReadOnly Property ActualGridControl As GridControl
+        Protected ReadOnly Property ActualGridControl() As GridControl
             Get
-                If GridControl Is Nothing Then
-                    Return TryCast(AssociatedObject, GridControl)
-                End If
-                Return GridControl
+                Return If(GridControl IsNot Nothing, GridControl, TryCast(AssociatedObject, GridControl))
             End Get
         End Property
 
         Public Sub BeginUpdate() Implements ICustomService.BeginUpdate
-            Dispatcher.Invoke(Sub()
-                                  If ActualGridControl IsNot Nothing Then
-                                      ActualGridControl.BeginDataUpdate()
-                                  End If
-                              End Sub)
+            Dispatcher.Invoke(New Action(Sub()
+                If ActualGridControl IsNot Nothing Then
+                    ActualGridControl.BeginDataUpdate()
+                End If
+            End Sub))
         End Sub
 
         Public Sub EndUpdate() Implements ICustomService.EndUpdate
-            Dispatcher.Invoke(Sub()
-                                  If ActualGridControl IsNot Nothing Then
-                                      ActualGridControl.EndDataUpdate()
-                                  End If
-                              End Sub)
+            Dispatcher.Invoke(New Action(Sub()
+                If ActualGridControl IsNot Nothing Then
+                    ActualGridControl.EndDataUpdate()
+                End If
+            End Sub))
         End Sub
     End Class
 End Namespace

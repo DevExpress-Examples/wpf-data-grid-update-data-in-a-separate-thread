@@ -19,6 +19,7 @@
 ' You can find sample updates and versions for different programming languages here:
 ' http://www.devexpress.com/example=E3322
 
+Imports System.Windows
 
 Namespace DXGridThreads
     ''' <summary>

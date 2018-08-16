@@ -1,4 +1,8 @@
-﻿Imports System.ComponentModel
+﻿Imports System
+Imports System.Collections.Generic
+Imports System.ComponentModel
+Imports System.Linq
+Imports System.Text
 
 Namespace DXGridThreads
     Public Class DataItem
@@ -20,6 +24,9 @@ Namespace DXGridThreads
             End Set
         End Property
 
+
+'INSTANT VB TODO TASK: There is no VB equivalent to 'volatile':
+'ORIGINAL LINE: protected volatile int _Value;
         Protected _Value As Integer
 
         Public Property Value() As Integer
