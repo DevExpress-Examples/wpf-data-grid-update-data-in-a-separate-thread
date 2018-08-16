@@ -4,9 +4,7 @@
 // Let's suppose that your data is being updated on another thread, by the timer in
 // this example. You should take a special action to correctly reflect those
 // changes in the grid - wrap them inside BeginDataUpdate/EndDataUpdate
-using System;
 using System.Windows;
-using System.Windows.Threading;
 
 namespace DXGridThreads {
     public partial class MainWindow : Window {
@@ -14,6 +12,5 @@ namespace DXGridThreads {
         public MainWindow() {
             InitializeComponent();
         }
-
     }
 }
