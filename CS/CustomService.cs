@@ -3,37 +3,35 @@ using System;
 using System.Windows;
 using DevExpress.Xpf.Mvvm.UI;
 
-namespace DXGridThreads
-{
+namespace DXGridThreads {
 
     public interface ICustomService {
         void BeginUpdate();
         void EndUpdate();
     }
 
-    public class CustomService : ServiceBase , ICustomService
-    {
+    public class CustomService : ServiceBase, ICustomService {
+        public static readonly DependencyProperty GridControlProperty =
+            DependencyProperty.Register("GridControl", typeof(GridControl), typeof(CustomService), new PropertyMetadata(null));
 
         public GridControl GridControl {
             get { return (GridControl)GetValue(GridControlProperty); }
             set { SetValue(GridControlProperty, value); }
         }
-
-        public static readonly DependencyProperty GridControlProperty =
-            DependencyProperty.Register("GridControl", typeof(GridControl), typeof(CustomService), new PropertyMetadata(null));
+        protected GridControl ActualGridControl { get { return GridControl != null ? GridControl : AssociatedObject as GridControl; } }
 
         public void BeginUpdate() {
             Dispatcher.Invoke(new Action(() => {
-                if(this.GridControl != null) {
-                    this.GridControl.BeginDataUpdate();
+                if (ActualGridControl != null) {
+                    ActualGridControl.BeginDataUpdate();
                 }
             }));
         }
 
         public void EndUpdate() {
             Dispatcher.Invoke(new Action(() => {
-                if(this.GridControl != null) {
-                    this.GridControl.EndDataUpdate();
+                if (ActualGridControl != null) {
+                    ActualGridControl.EndDataUpdate();
                 }
             }));
         }

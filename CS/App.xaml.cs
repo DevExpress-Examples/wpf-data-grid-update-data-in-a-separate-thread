@@ -19,11 +19,6 @@
 // You can find sample updates and versions for different programming languages here:
 // http://www.devexpress.com/example=E3322
 
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Windows;
 
 namespace DXGridThreads {

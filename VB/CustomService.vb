@@ -1,6 +1,4 @@
 ﻿Imports DevExpress.Xpf.Grid
-Imports System
-Imports System.Windows
 Imports DevExpress.Xpf.Mvvm.UI
 
 Namespace DXGridThreads
@@ -14,6 +12,8 @@ Namespace DXGridThreads
         Inherits ServiceBase
         Implements ICustomService
 
+        Public Shared ReadOnly GridControlProperty As DependencyProperty = DependencyProperty.Register("GridControl", GetType(GridControl), GetType(CustomService), New PropertyMetadata(Nothing))
+
         Public Property GridControl() As GridControl
             Get
                 Return CType(GetValue(GridControlProperty), GridControl)
@@ -23,22 +23,29 @@ Namespace DXGridThreads
             End Set
         End Property
 
-        Public Shared ReadOnly GridControlProperty As DependencyProperty = DependencyProperty.Register("GridControl", GetType(GridControl), GetType(CustomService), New PropertyMetadata(Nothing))
+        Protected ReadOnly Property ActualGridControl As GridControl
+            Get
+                If GridControl Is Nothing Then
+                    Return TryCast(AssociatedObject, GridControl)
+                End If
+                Return GridControl
+            End Get
+        End Property
 
         Public Sub BeginUpdate() Implements ICustomService.BeginUpdate
-            Dispatcher.Invoke(New Action(Sub()
-                If Me.GridControl IsNot Nothing Then
-                    Me.GridControl.BeginDataUpdate()
-                End If
-            End Sub))
+            Dispatcher.Invoke(Sub()
+                                  If ActualGridControl IsNot Nothing Then
+                                      ActualGridControl.BeginDataUpdate()
+                                  End If
+                              End Sub)
         End Sub
 
         Public Sub EndUpdate() Implements ICustomService.EndUpdate
-            Dispatcher.Invoke(New Action(Sub()
-                If Me.GridControl IsNot Nothing Then
-                    Me.GridControl.EndDataUpdate()
-                End If
-            End Sub))
+            Dispatcher.Invoke(Sub()
+                                  If ActualGridControl IsNot Nothing Then
+                                      ActualGridControl.EndDataUpdate()
+                                  End If
+                              End Sub)
         End Sub
     End Class
 End Namespace

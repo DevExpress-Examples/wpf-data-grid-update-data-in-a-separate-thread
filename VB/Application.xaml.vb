@@ -19,12 +19,6 @@
 ' You can find sample updates and versions for different programming languages here:
 ' http://www.devexpress.com/example=E3322
 
-Imports System
-Imports System.Collections.Generic
-Imports System.Configuration
-Imports System.Data
-Imports System.Linq
-Imports System.Windows
 
 Namespace DXGridThreads
     ''' <summary>
