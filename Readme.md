@@ -4,7 +4,7 @@
 * [CustomService.cs](./CS/CustomService.cs) (VB: [CustomService.vb](./VB/CustomService.vb))
 * [DataItem.cs](./CS/DataItem.cs) (VB: [DataItem.vb](./VB/DataItem.vb))
 * **[MainWindow.xaml](./CS/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/MainWindow.xaml))**
-* [MainWindow.xaml.cs](./CS/MainWindow.xaml.cs) (VB: [MainWindow.xaml](./VB/MainWindow.xaml))
+* [MainWindow.xaml.cs](./CS/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/MainWindow.xaml.vb))
 * [ViewModel.cs](./CS/ViewModel.cs) (VB: [ViewModel.vb](./VB/ViewModel.vb))
 <!-- default file list end -->
 # How to display data which is being updated on another thread
