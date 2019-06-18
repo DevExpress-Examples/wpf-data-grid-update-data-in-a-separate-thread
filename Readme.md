@@ -38,7 +38,7 @@ Refer to the following topics for more information about how to access a service
 - [Services in POCO Objects](https://docs.devexpress.com/WPF/17447/mvvm-framework/services/services-in-poco-objects)
 - [Services in custom ViewModels](https://docs.devexpress.com/WPF/17450/mvvm-framework/services/services-in-custom-viewmodels)
 
-In the **previous versions**, the **ViewModel class** provides additional events and invokes them before and after the data update.** MainWindow** subscribes to these events and invokes **BeginDataUpdate** and **EndDataUpdate** in the event handlers.
+In the **previous versions**, the **ViewModel class** provides additional events and invokes them before and after the data update. **MainWindow** subscribes to these events and invokes **BeginDataUpdate** and **EndDataUpdate** in the event handlers.
 
 See also:
 
