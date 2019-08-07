@@ -11,7 +11,7 @@
 
 > A recommended way to manage multi-thread updates is to [dispatch them to the main thread](https://docs.devexpress.com/WPF/11765/controls-and-libraries/data-grid/binding-to-data/managing-multi-thread-data-updates#dispatch-updates-to-the-main-thread). With this approach, you can perform time-consuming operations such as loading data in a separate thread.
 
-> This approach does not work for the [TreeListView](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TreeListView).
+> This approach does not work for the [TreeListView](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TreeListView). [Dispatch data updates to the main thread](https://docs.devexpress.com/WPF/11765/controls-and-libraries/data-grid/binding-to-data/managing-multi-thread-data-updates#dispatch-updates-to-the-main-thread) to avoid the issue in this scenario.
 
 This example invokes the [BeginDataUpdate](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.BeginDataUpdate) and [EndDataUpdate](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.EndDataUpdate) methods to temporarily disable internal data updates in the **GridControl**.
 
