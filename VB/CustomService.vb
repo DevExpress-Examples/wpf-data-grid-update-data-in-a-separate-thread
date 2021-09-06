@@ -1,7 +1,7 @@
 ﻿Imports DevExpress.Xpf.Grid
 Imports System
 Imports System.Windows
-Imports DevExpress.Xpf.Mvvm.UI
+Imports DevExpress.Mvvm.UI
 
 Namespace DXGridThreads
 

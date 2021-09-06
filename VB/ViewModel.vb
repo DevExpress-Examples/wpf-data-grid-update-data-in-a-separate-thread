@@ -1,4 +1,4 @@
-﻿Imports DevExpress.Xpf.Mvvm
+﻿Imports DevExpress.Mvvm
 Imports System
 Imports System.Collections.ObjectModel
 Imports System.Threading

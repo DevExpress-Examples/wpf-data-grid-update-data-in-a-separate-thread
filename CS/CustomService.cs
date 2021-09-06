@@ -1,7 +1,7 @@
 ﻿using DevExpress.Xpf.Grid;
 using System;
 using System.Windows;
-using DevExpress.Xpf.Mvvm.UI;
+using DevExpress.Mvvm.UI;
 
 namespace DXGridThreads {
 

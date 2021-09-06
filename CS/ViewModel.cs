@@ -1,4 +1,4 @@
-﻿using DevExpress.Xpf.Mvvm;
+﻿using DevExpress.Mvvm;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading;
