@@ -22,17 +22,17 @@ This example invokes the [BeginDataUpdate](https://docs.devexpress.com/WPF/DevE
 
 We used the following approaches in order not to call the GridControl's methods in the ViewModel.
 
-In **v13.1.4** and later, we created a [custom service](https://docs.devexpress.com/WPF/16920/mvvm-framework/services/how-to-create-a-custom-service). This service implements the **ICustomService** interface and invokes **BeginDataUpdate** and **EndDataUpdate** in the **ICustomService.BeginUpdate** and **ICustomService.EndUpdate** methods.
+In **v13.1.4** and later, we created a [custom service](https://docs.devexpress.com/WPF/16920/mvvm-framework/services/how-to-create-a-custom-service). This service implements the **IGridUpdateService** interface and invokes **BeginDataUpdate** and **EndDataUpdate** in the **ICustomService.BeginUpdate** and **ICustomService.EndUpdate** methods.
 
 ```CS
-public interface ICustomService {
+public interface IGridUpdateService {
     void BeginUpdate();
     void EndUpdate();
 }
 ```
 
 ```VB
-Public Interface ICustomService
+Public Interface IGridUpdateService
     Sub BeginUpdate()
     Sub EndUpdate()
 End Interface
