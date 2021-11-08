@@ -31,7 +31,7 @@ public interface IGridUpdateService {
 }
 ```
 
-```VB
+```vb
 Public Interface IGridUpdateService
     Sub BeginUpdate()
     Sub EndUpdate()
