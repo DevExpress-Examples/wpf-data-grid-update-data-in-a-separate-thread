@@ -4,19 +4,16 @@
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
         xmlns:local="clr-namespace:DXGridThreads"
-        xmlns:mvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
         Title="MainWindow"
         Width="525"
         Height="350">
-
     <Window.DataContext>
         <local:ViewModel />
     </Window.DataContext>
-
-    <dxg:GridControl Name="grid" AutoGenerateColumns="AddNew" ItemsSource="{Binding Source}">
-        <mvvm:Interaction.Behaviors>
-            <local:CustomService />
-        </mvvm:Interaction.Behaviors>
+    <dxg:GridControl AutoGenerateColumns="AddNew" ItemsSource="{Binding Source}">
+        <dxmvvm:Interaction.Behaviors>
+            <local:GridUpdateService />
+        </dxmvvm:Interaction.Behaviors>
     </dxg:GridControl>
-
 </Window>
