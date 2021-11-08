@@ -7,7 +7,6 @@
 *Files to look at*:
 
 * [GridUpdateService.cs](./CS/GridUpdateService.cs) (VB: [GridUpdateService.vb](./VB/GridUpdateService.vb))
-* [DataItem.cs](./CS/DataItem.cs) (VB: [DataItem.vb](./VB/DataItem.vb))
 * **[MainWindow.xaml](./CS/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/MainWindow.xaml))**
 * [MainWindow.xaml.cs](./CS/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/MainWindow.xaml.vb))
 * [ViewModel.cs](./CS/ViewModel.cs) (VB: [ViewModel.vb](./VB/ViewModel.vb))
