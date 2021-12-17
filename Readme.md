@@ -3,15 +3,8 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E3322)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
 
-* [GridUpdateService.cs](./CS/GridUpdateService.cs) (VB: [GridUpdateService.vb](./VB/GridUpdateService.vb))
-* **[MainWindow.xaml](./CS/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/MainWindow.xaml))**
-* [MainWindow.xaml.cs](./CS/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/MainWindow.xaml.vb))
-* [ViewModel.cs](./CS/ViewModel.cs) (VB: [ViewModel.vb](./VB/ViewModel.vb))
-<!-- default file list end -->
-# How to Display Data which is Updated in Another Thread
+# Data Grid for WPF - How to Update Data in a Separate Thread
 
 > A recommended way to manage multi-thread updates is to [dispatch them to the main thread](https://docs.devexpress.com/WPF/11765/controls-and-libraries/data-grid/binding-to-data/managing-multi-thread-data-updates#dispatch-updates-to-the-main-thread). With this approach, you can perform time-consuming operations such as loading data in a separate thread.
 
@@ -44,6 +37,16 @@ Refer to the following topics for information on how to access a service in the 
 
 In the **previous versions**, the **ViewModel class** provides additional events and invokes them before and after the data update. The **MainWindow** subscribes to these events and invokes **BeginDataUpdate** and **EndDataUpdate** in the event handlers.
 
-See also:
+## Files to Look At
+
+* [GridUpdateService.cs](./CS/GridUpdateService.cs) (VB: [GridUpdateService.vb](./VB/GridUpdateService.vb))
+* **[MainWindow.xaml](./CS/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/MainWindow.xaml))**
+* [MainWindow.xaml.cs](./CS/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/MainWindow.xaml.vb))
+* [ViewModel.cs](./CS/ViewModel.cs) (VB: [ViewModel.vb](./VB/ViewModel.vb))
+
+## Documentation
 
 [Managing Multi-Thread Data Updates](https://docs.devexpress.com/WPF/11765/controls-and-libraries/data-grid/binding-to-data/managing-multi-thread-data-updates)
+
+## More Examples
+[How to Call the BeginDataUpdate and EndDataUpdate Methods at the View Model Level](https://github.com/DevExpress-Examples/how-to-call-data-grid-BeginDataUpdate-and-EndDataUpdate-at-the-view-model-level)
