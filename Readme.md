@@ -6,47 +6,83 @@
 
 # Data Grid for WPF - How to Update Data in a Separate Thread
 
-> A recommended way to manage multi-thread updates is to [dispatch them to the main thread](https://docs.devexpress.com/WPF/11765/controls-and-libraries/data-grid/binding-to-data/managing-multi-thread-data-updates#dispatch-updates-to-the-main-thread). With this approach, you can perform time-consuming operations such as loading data in a separate thread.
+This example demostrates how to update [GridControl](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl) data in a separate thread. To
+[synchronize access to data](https://docs.devexpress.com/WPF/11765/controls-and-libraries/data-grid/performance-improvement/manage-multi-thread-data-updates#lock-gridcontrol-updates-to-synchronize-access-to-data), call the [BeginDataUpdate](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.BeginDataUpdate) and [EndDataUpdate](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.EndDataUpdate) methods. These methods allow you to lock updates within the GridControl, process data updates, and then apply all changes to the control.
 
-> This approach does not work for the [TreeListView](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TreeListView). [Dispatch data updates to the main thread](https://docs.devexpress.com/WPF/11765/controls-and-libraries/data-grid/binding-to-data/managing-multi-thread-data-updates#dispatch-updates-to-the-main-thread) to avoid the issue in this scenario.
+Create a [custom service](https://docs.devexpress.com/WPF/16920/mvvm-framework/services/how-to-create-a-custom-service) that calls the GridControl methods. Use the [Dispatcher](https://docs.microsoft.com/en-us/dotnet/api/system.windows.threading.dispatcher) to invoke these methods in the UI thread.
 
-This example invokes the [BeginDataUpdate](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.BeginDataUpdate) and [EndDataUpdate](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.DataControlBase.EndDataUpdate) methods to temporarily disable internal data updates in the **GridControl**.
-
-We used the following approaches in order not to call the GridControl's methods in the ViewModel.
-
-In **v13.1.4** and later, we created a [custom service](https://docs.devexpress.com/WPF/16920/mvvm-framework/services/how-to-create-a-custom-service). This service implements the **IGridUpdateService** interface and invokes **BeginDataUpdate** and **EndDataUpdate** in the **IGridUpdateService.BeginUpdate** and **IGridUpdateService.EndUpdate** methods.
-
-```CS
+```cs
+...
 public interface IGridUpdateService {
     void BeginUpdate();
     void EndUpdate();
 }
+
+public class GridUpdateService : ServiceBase, IGridUpdateService {
+    //...
+
+    public void BeginUpdate() {
+        Dispatcher.Invoke(new Action(() => {
+            if (GridControl != null) {
+                GridControl.BeginDataUpdate();
+            }
+        }));
+    }
+
+    public void EndUpdate() {
+       //...
+    }
+}
+...
 ```
 
-```vb
-Public Interface IGridUpdateService
-    Sub BeginUpdate()
-    Sub EndUpdate()
-End Interface
+Add the service to your View and assosiate this service with the GridControl. 
+```xaml
+<dxg:GridControl>
+    <mvvm:Interaction.Behaviors>
+        <local:GridUpdateService />
+    </mvvm:Interaction.Behaviors>
+</dxg:GridControl>
+...
 ```
 
-Refer to the following topics for information on how to access a service in the ViewModel.
-- [Services in ViewModelBase descendants](https://docs.devexpress.com/WPF/17446/mvvm-framework/services/services-in-viewmodelbase-descendants)
-- [Services in generated ViewModels](https://docs.devexpress.com/WPF/17447/mvvm-framework/services/services-in-generated-view-model)
-- [Services in custom ViewModels](https://docs.devexpress.com/WPF/17450/mvvm-framework/services/services-in-custom-viewmodels)
+Access to the service at the View Model level. If you inherit your View Model class from ViewModelBase, you can access to the service as follows:
 
-In the **previous versions**, the **ViewModel class** provides additional events and invokes them before and after the data update. The **MainWindow** subscribes to these events and invokes **BeginDataUpdate** and **EndDataUpdate** in the event handlers.
+```cs
+public class ViewModel : ViewModelBase {
+    //...
+    
+    public IGridUpdateService GridUpdateService { get { return GetService<IGridUpdateService>(); } }
+    
+    void TimerCallback(object state) {
+        lock(SyncRoot) {
+            if(GridUpdateService != null) {
+                GridUpdateService.BeginUpdate();
+                foreach(DataItem item in Source) {
+                    item.Value = random.Next(100);
+                }
+                GridUpdateService.EndUpdate();
+            }
+        }
+    }
+}
+```
 
 ## Files to Look At
 
 * [GridUpdateService.cs](./CS/GridUpdateService.cs) (VB: [GridUpdateService.vb](./VB/GridUpdateService.vb))
-* **[MainWindow.xaml](./CS/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/MainWindow.xaml))**
-* [MainWindow.xaml.cs](./CS/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/MainWindow.xaml.vb))
+* [MainWindow.xaml](./CS/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/MainWindow.xaml))
 * [ViewModel.cs](./CS/ViewModel.cs) (VB: [ViewModel.vb](./VB/ViewModel.vb))
 
 ## Documentation
 
-[Managing Multi-Thread Data Updates](https://docs.devexpress.com/WPF/11765/controls-and-libraries/data-grid/binding-to-data/managing-multi-thread-data-updates)
+- [Managing Multi-Thread Data Updates](https://docs.devexpress.com/WPF/11765/controls-and-libraries/data-grid/binding-to-data/managing-multi-thread-data-updates)
+- [How to Create a Custom Service](https://docs.devexpress.com/WPF/16920/mvvm-framework/services/how-to-create-a-custom-service)
+
+Refer to the following topics for information on how to access a service in the ViewModel:
+- [Services in ViewModelBase descendants](https://docs.devexpress.com/WPF/17446/mvvm-framework/services/services-in-viewmodelbase-descendants)
+- [Services in generated ViewModels](https://docs.devexpress.com/WPF/17447/mvvm-framework/services/services-in-generated-view-model)
+- [Services in custom ViewModels](https://docs.devexpress.com/WPF/17450/mvvm-framework/services/services-in-custom-viewmodels)
 
 ## More Examples
-[How to Call the BeginDataUpdate and EndDataUpdate Methods at the View Model Level](https://github.com/DevExpress-Examples/how-to-call-data-grid-BeginDataUpdate-and-EndDataUpdate-at-the-view-model-level)
+- [How to Call the BeginDataUpdate and EndDataUpdate Methods at the View Model Level](https://github.com/DevExpress-Examples/how-to-call-data-grid-BeginDataUpdate-and-EndDataUpdate-at-the-view-model-level)
