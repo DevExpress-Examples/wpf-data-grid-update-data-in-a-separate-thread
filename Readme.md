@@ -80,9 +80,9 @@ public class ViewModel : ViewModelBase {
 - [How to Create a Custom Service](https://docs.devexpress.com/WPF/16920/mvvm-framework/services/how-to-create-a-custom-service)
 
 Refer to the following topics for information on how to access a service in the ViewModel:
-- [Services in ViewModelBase descendants](https://docs.devexpress.com/WPF/17446/mvvm-framework/services/services-in-viewmodelbase-descendants)
-- [Services in generated ViewModels](https://docs.devexpress.com/WPF/17447/mvvm-framework/services/services-in-generated-view-model)
-- [Services in custom ViewModels](https://docs.devexpress.com/WPF/17450/mvvm-framework/services/services-in-custom-viewmodels)
+- [Services in ViewModelBase Descendants](https://docs.devexpress.com/WPF/17446/mvvm-framework/services/services-in-viewmodelbase-descendants)
+- [Services in Generated ViewModels](https://docs.devexpress.com/WPF/17447/mvvm-framework/services/services-in-generated-view-model)
+- [Services in Custom ViewModels](https://docs.devexpress.com/WPF/17450/mvvm-framework/services/services-in-custom-viewmodels)
 
 ## More Examples
 - [How to Call the BeginDataUpdate and EndDataUpdate Methods at the View Model Level](https://github.com/DevExpress-Examples/how-to-call-data-grid-BeginDataUpdate-and-EndDataUpdate-at-the-view-model-level)
