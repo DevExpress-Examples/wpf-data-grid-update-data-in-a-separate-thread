@@ -46,7 +46,7 @@ Add the service to your View and assosiate this service with the GridControl.
 ...
 ```
 
-Access to the service at the View Model level. If you inherit your View Model class from ViewModelBase, you can access to the service as follows:
+Access to the service at the View Model level. If you inherit your View Model class from ViewModelBase, you can access the service as follows:
 
 ```cs
 public class ViewModel : ViewModelBase {
