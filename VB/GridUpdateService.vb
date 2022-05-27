@@ -1,6 +1,5 @@
 Imports DevExpress.Xpf.Grid
 Imports System
-Imports System.Windows
 Imports DevExpress.Mvvm.UI
 
 Namespace DXGridThreads
@@ -17,16 +16,10 @@ Namespace DXGridThreads
         Inherits ServiceBase
         Implements IGridUpdateService
 
-        Public Shared ReadOnly GridControlProperty As DependencyProperty = DependencyProperty.Register("GridControl", GetType(GridControl), GetType(GridUpdateService), New PropertyMetadata(CType(Nothing, PropertyChangedCallback)))
-
-        Public Property GridControl As GridControl
+        Private ReadOnly Property GridControl As GridControl
             Get
-                Return CType(GetValue(GridControlProperty), GridControl)
+                Return TryCast(AssociatedObject, GridControl)
             End Get
-
-            Set(ByVal value As GridControl)
-                SetValue(GridControlProperty, value)
-            End Set
         End Property
 
         Public Sub BeginUpdate() Implements IGridUpdateService.BeginUpdate
