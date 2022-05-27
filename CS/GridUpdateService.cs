@@ -10,13 +10,7 @@ namespace DXGridThreads {
     }
 
     public class GridUpdateService : ServiceBase, IGridUpdateService {
-        public static readonly DependencyProperty GridControlProperty =
-            DependencyProperty.Register("GridControl", typeof(GridControl), typeof(GridUpdateService), new PropertyMetadata(null));
-
-        public GridControl GridControl {
-            get { return (GridControl)GetValue(GridControlProperty); }
-            set { SetValue(GridControlProperty, value); }
-        }
+        GridControl GridControl => AssociatedObject as GridControl;
 
         public void BeginUpdate() {
             Dispatcher.Invoke(new Action(() => {
