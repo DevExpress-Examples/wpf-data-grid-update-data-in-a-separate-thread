@@ -88,7 +88,7 @@ Refer to the following topics for information on how to access a service in the 
 ## More Examples
 - [How to Call the BeginDataUpdate and EndDataUpdate Methods at the View Model Level](https://github.com/DevExpress-Examples/how-to-call-data-grid-BeginDataUpdate-and-EndDataUpdate-at-the-view-model-level)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=wpf-data-grid-update-data-in-a-separate-thread&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=wpf-data-grid-update-data-in-a-separate-thread&~~~was_helpful=no)
 
